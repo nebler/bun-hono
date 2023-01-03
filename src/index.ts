@@ -1,4 +1,4 @@
-import { Hono } from "hono";
+import { Context, Hono } from "hono";
 import { serveStatic } from 'hono/serve-static.bun';
 import { bearerAuth } from 'hono/bearer-auth'
 const port = parseInt(process.env.PORT) || 3000;
@@ -20,6 +20,12 @@ app.get('/auth/page', (c) => {
 })
 
 console.log(`Running at http://localhost:${port}`);
+
+//converter with params
+app.get("/binaryToHexa", (c) => c.text("test"))
+
+//converter with params
+app.get("/huh", (c) => c.redirect("/binaryToHexa"))
 
 export default {
   port,
